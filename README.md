@@ -28,6 +28,17 @@ file, where you also need to uncomment corresponding device family `#define`.
 * Take a look at the `stdperiphlib/device_support/gcc/STM32L152VB_FLASH.ld` linker script,
 you might need to change memory sizes, or completely replace it according to your microcontroller.
 
+# Warning
+I'm not really sure what's going on in the linker script I've mentioned above. By default, it had
+FLASH and RAM sizes set to 128K and 16K accordingly, even though STM32L152R8T6 (that I'm using in
+my own project) only has 10K of RAM (according to the datasheet). Different sources specify
+different figures for some bizarre reason :\
+* http://www.st.com/web/en/resource/technical/document/datasheet/CD00277537.pdf, page 11 implies that
+it has 64K of FLASH and 10K of SRAM;
+* http://uk.rs-online.com/web/p/microcontrollers/7957568/ implies that it has 128K of FLASH and 16K of SRAM;
+* http://ru.mouser.com/ProductDetail/STMicroelectronics/STM32L152R8T6/?qs=G0rgft3hAxKHKmHne1A%252bnw%3d%3d - 64K FLASH, 16K SRAM.
+* My own chip shows up in stm32flash as having 16K of SRAM and 128K of FLASH. Go figure.
+ 
 # Sample program
 I've made this template for my own barebone STM32L152R8T6 prototype board. 
 With this template I've included a simple 'Hello world' blink program,
